@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useParams, Link } from "wouter";
 import { motion } from "framer-motion";
 import { ArrowLeft, Ruler, Image as ImageIcon } from "lucide-react";
-import { getArtworkById } from "@/lib/data";
+import { getArtworkById, getImageUrl } from "@/lib/data";
 import Navbar from "@/components/Navbar";
 import PageTransition from "@/components/PageTransition";
 
@@ -57,7 +57,7 @@ export default function ViewInRoom() {
                     <div className="relative max-w-5xl w-full mx-auto" style={{ aspectRatio: "1200/800" }}>
 
                         <img
-                            src="/room-interior.jpg"
+                            src={getImageUrl("/room-interior.jpg")}
                             alt="Interior room"
                             className="absolute inset-0 w-full h-full object-contain"
                         />

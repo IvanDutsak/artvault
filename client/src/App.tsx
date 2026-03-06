@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch, Router as WouterRouter } from "wouter";
+import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -48,37 +48,35 @@ function App() {
   }, []);
 
   return (
-    <WouterRouter base="/artvault">
-      <ErrorBoundary>
-        <ThemeProvider defaultTheme="dark">
-          <CartProvider>
-            <FavoritesProvider>
-              <TooltipProvider>
-                <LoadingScreen isLoading={isLoading} />
-                <CustomCursor />
-                <ScrollProgress />
-                <BackToTop />
-                <Toaster
-                  toastOptions={{
-                    style: {
-                      background: "oklch(0.15 0.005 285)",
-                      border: "1px solid oklch(0.75 0.12 85 / 30%)",
-                      color: "oklch(0.95 0.01 85)",
-                      fontFamily: "var(--font-ui)",
-                    },
-                  }}
-                />
-                <div className="grain-overlay">
-                  <SmoothScroll>
-                    <Router />
-                  </SmoothScroll>
-                </div>
-              </TooltipProvider>
-            </FavoritesProvider>
-          </CartProvider>
-        </ThemeProvider>
-      </ErrorBoundary>
-    </WouterRouter>
+    <ErrorBoundary>
+      <ThemeProvider defaultTheme="dark">
+        <CartProvider>
+          <FavoritesProvider>
+            <TooltipProvider>
+              <LoadingScreen isLoading={isLoading} />
+              <CustomCursor />
+              <ScrollProgress />
+              <BackToTop />
+              <Toaster
+                toastOptions={{
+                  style: {
+                    background: "oklch(0.15 0.005 285)",
+                    border: "1px solid oklch(0.75 0.12 85 / 30%)",
+                    color: "oklch(0.95 0.01 85)",
+                    fontFamily: "var(--font-ui)",
+                  },
+                }}
+              />
+              <div className="grain-overlay">
+                <SmoothScroll>
+                  <Router />
+                </SmoothScroll>
+              </div>
+            </TooltipProvider>
+          </FavoritesProvider>
+        </CartProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -75,7 +75,7 @@ export default function ArtworkCard({ artwork, index = 0 }: ArtworkCardProps) {
       } as any}
       className="group relative"
     >
-      <div onClick={() => navigate(`/artwork/${artwork.id}`)} className="cursor-pointer">
+      <div onClick={() => { window.location.href = `/artwork/${artwork.id}`; }} className="cursor-pointer">
         <div className="relative overflow-hidden bg-card gold-border-glow">
 
           <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-gold/50 z-10 transition-all duration-500 group-hover:w-10 group-hover:h-10 group-hover:border-gold" />

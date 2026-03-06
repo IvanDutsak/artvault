@@ -14,6 +14,16 @@ export interface Artwork {
   featured: boolean;
 }
 
+export function getImageUrl(path: string): string {
+  if (!path) return path;
+  if (path.startsWith('http') || path.startsWith('data:')) return path;
+
+  const base = import.meta.env.BASE_URL;
+  if (!base || base === '/') return path;
+
+  return `${base}${path.startsWith('/') ? path.slice(1) : path}`;
+}
+
 export type ArtCategory =
   | "Ренесанс"
   | "Імпресіонізм"
@@ -196,7 +206,7 @@ export const artworks: Artwork[] = [
     category: "Бароко",
     description: "Драматичний вид венеціанського каналу на заході сонця з гондолами та вишуканими мостами. Багаті золоті тони та глибокі тіні створюють атмосферу романтики старої Венеції. Майстерна техніка імпасто передає текстуру води та архітектури.",
     price: 71000,
-    image: "venetian_canal_painting_1772387565814.png",
+    image: getImageUrl("/venetian_canal_painting_1772387565814.png"),
     dimensions: "130 × 170 см",
     medium: "Олія на полотні",
     featured: true,
@@ -209,7 +219,7 @@ export const artworks: Artwork[] = [
     category: "Сюрреалізм",
     description: "Сюрреалістична композиція з годинниками, що тануть над мрійливим пустельним пейзажем з неможливою архітектурою. Глибока синьо-бурштинова палітра створює відчуття позачасовості та ірреальності людського сприйняття часу.",
     price: 58000,
-    image: "surrealist_clocks_painting_1772387580627.png",
+    image: getImageUrl("/surrealist_clocks_painting_1772387580627.png"),
     dimensions: "100 × 140 см",
     medium: "Олія на полотні",
     featured: true,
@@ -222,7 +232,7 @@ export const artworks: Artwork[] = [
     category: "Імпресіонізм",
     description: "Імпресіоністський пейзаж лавандового поля у Провансі під час золотої години. Кам'яний фермерський будинок на тлі фіолетових та золотих відтінків. Видимі мазки пензля передають тремтіння світла та повітря.",
     price: 42000,
-    image: "lavender_field_painting_1772387595091.png",
+    image: getImageUrl("/lavender_field_painting_1772387595091.png"),
     dimensions: "90 × 130 см",
     medium: "Олія на полотні",
     featured: true,
