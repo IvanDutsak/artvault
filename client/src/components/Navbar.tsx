@@ -56,9 +56,9 @@ export default function Navbar() {
       >
         <div className="container flex items-center justify-between h-16 md:h-20">
 
-          <Link href="/">
-            <motion.div
-              className="flex items-center gap-3 group"
+          <Link href="/" asChild>
+            <motion.a
+              className="flex items-center gap-3 group cursor-pointer"
               whileHover={{ scale: 1.02 }}
             >
               <div className="w-8 h-8 sm:w-10 sm:h-10 border border-gold/40 flex items-center justify-center relative overflow-hidden">
@@ -77,15 +77,15 @@ export default function Navbar() {
                   Галерея Мистецтва
                 </span>
               </div>
-            </motion.div>
+            </motion.a>
           </Link>
 
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href}>
-                <motion.span
-                  className={`relative font-ui text-sm tracking-[0.15em] uppercase transition-colors duration-300 py-2 ${location === link.href
+              <Link key={link.href} href={link.href} asChild>
+                <motion.a
+                  className={`relative font-ui text-sm tracking-[0.15em] uppercase transition-colors duration-300 py-2 cursor-pointer ${location === link.href
                     ? "text-gold"
                     : "text-cream/70 hover:text-cream"
                     }`}
@@ -99,7 +99,7 @@ export default function Navbar() {
                       transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     />
                   )}
-                </motion.span>
+                </motion.a>
               </Link>
             ))}
           </div>
@@ -107,8 +107,8 @@ export default function Navbar() {
 
           <div className="flex items-center gap-4">
             <Magnetic intensity={0.2} actionArea="parent">
-              <Link href="/favorites">
-                <motion.div
+              <Link href="/favorites" asChild>
+                <motion.a
                   className="relative p-2 text-cream/70 hover:text-gold transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -123,13 +123,13 @@ export default function Navbar() {
                       {favCount}
                     </motion.span>
                   )}
-                </motion.div>
+                </motion.a>
               </Link>
             </Magnetic>
 
             <Magnetic intensity={0.2} actionArea="parent">
-              <Link href="/cart">
-                <motion.div
+              <Link href="/cart" asChild>
+                <motion.a
                   className="relative p-2 text-cream/70 hover:text-gold transition-colors"
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.95 }}
@@ -144,7 +144,7 @@ export default function Navbar() {
                       {cartCount}
                     </motion.span>
                   )}
-                </motion.div>
+                </motion.a>
               </Link>
             </Magnetic>
 
@@ -180,13 +180,13 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.1 }}
                 >
-                  <Link href={link.href}>
-                    <span
+                  <Link href={link.href} asChild>
+                    <a
                       className={`font-display text-3xl tracking-wider ${location === link.href ? "text-gold" : "text-cream/80"
                         }`}
                     >
                       {link.label}
-                    </span>
+                    </a>
                   </Link>
                 </motion.div>
               ))}
@@ -196,16 +196,16 @@ export default function Navbar() {
                 transition={{ delay: 0.4 }}
                 className="mt-8 pt-8 border-t border-gold/20"
               >
-                <Link href="/favorites">
-                  <span className="font-ui text-cream/60 text-sm tracking-wider flex items-center gap-3">
+                <Link href="/favorites" asChild>
+                  <a className="font-ui text-cream/60 text-sm tracking-wider flex items-center gap-3">
                     <Heart size={16} /> Обрані ({favCount})
-                  </span>
+                  </a>
                 </Link>
               </motion.div>
-              <Link href="/cart">
-                <span className="font-ui text-cream/60 text-sm tracking-wider flex items-center gap-3">
+              <Link href="/cart" asChild>
+                <a className="font-ui text-cream/60 text-sm tracking-wider flex items-center gap-3">
                   <ShoppingCart size={16} /> Кошик ({cartCount})
-                </span>
+                </a>
               </Link>
             </div>
           </motion.div>
