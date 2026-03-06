@@ -83,23 +83,19 @@ export default function Navbar() {
 
           <div className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
-              <Link key={link.href} href={link.href} asChild>
-                <motion.a
-                  className={`relative font-ui text-sm tracking-[0.15em] uppercase transition-colors duration-300 py-2 cursor-pointer ${location === link.href
-                    ? "text-gold"
-                    : "text-cream/70 hover:text-cream"
-                    }`}
-                  whileHover={{ y: -1 }}
-                >
-                  {link.label}
-                  {location === link.href && (
-                    <motion.div
-                      layoutId="nav-underline"
-                      className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent"
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    />
-                  )}
-                </motion.a>
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`relative font-ui text-sm tracking-[0.15em] uppercase transition-all duration-300 py-2 cursor-pointer hover:-translate-y-[1px] ${location === link.href ? "text-gold" : "text-cream/70 hover:text-cream"}`}
+              >
+                {link.label}
+                {location === link.href && (
+                  <motion.div
+                    layoutId="nav-underline"
+                    className="absolute -bottom-1 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent"
+                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                  />
+                )}
               </Link>
             ))}
           </div>
