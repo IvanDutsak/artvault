@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
+import { Route, Switch, Router as WouterRouter } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
@@ -21,19 +21,22 @@ import BackToTop from "./components/BackToTop";
 import LoadingScreen from "./components/LoadingScreen";
 
 function Router() {
+  const base = import.meta.env.BASE_URL.replace(/\/$/, "");
   return (
-    <Switch>
-      <Route path="/" component={Home} />
-      <Route path="/gallery" component={Gallery} />
-      <Route path="/gallery3d" component={Gallery3D} />
-      <Route path="/artwork/:id" component={ArtworkDetail} />
-      <Route path="/artwork/:id/room" component={ViewInRoom} />
-      <Route path="/favorites" component={Favorites} />
-      <Route path="/cart" component={Cart} />
-      <Route path="/about" component={About} />
-      <Route path="/404" component={NotFound} />
-      <Route component={NotFound} />
-    </Switch>
+    <WouterRouter base={base}>
+      <Switch>
+        <Route path="/" component={Home} />
+        <Route path="/gallery" component={Gallery} />
+        <Route path="/gallery3d" component={Gallery3D} />
+        <Route path="/artwork/:id" component={ArtworkDetail} />
+        <Route path="/artwork/:id/room" component={ViewInRoom} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/cart" component={Cart} />
+        <Route path="/about" component={About} />
+        <Route path="/404" component={NotFound} />
+        <Route component={NotFound} />
+      </Switch>
+    </WouterRouter>
   );
 }
 
